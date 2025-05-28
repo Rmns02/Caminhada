@@ -1,0 +1,208 @@
+<html lang="pt"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Caminhada Jovem 2024 - Aventura na Serra</title><style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6f8;
+      color: #333;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      margin: 0 0 0.6rem 0;
+      color: #2c3e50;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
+    }
+    h2 {
+      border-left: 5px solid #4a90e2;
+      padding-left: 0.75rem;
+      margin-top: 2rem;
+      font-weight: 700;
+      font-size: 1.9rem;
+    }
+    header {
+      background: white;
+      padding: 3rem 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgb(74 144 226 / 0.15);
+    }
+    header p {
+      font-size: 1.2rem;
+      max-width: 580px;
+      margin: 0.5rem auto 0;
+      color: #566375;
+    }
+    nav {
+      margin-top: 1rem;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+    nav li {
+      margin: 0 1rem;
+    }
+    nav a {
+      text-decoration: none;
+      color: #4a90e2;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto 4rem;
+      padding: 0 1rem;
+    }
+    section {
+      background: white;
+      padding: 1.8rem 2rem 2rem;
+      box-shadow: 0 5px 20px rgb(74 144 226 / 0.07);
+    }
+    .info-grid {
+      display: grid;
+      gap: 1.4rem;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      margin-top: 1rem;
+    }
+    .info-item {
+      background: #e8f0fe;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      color: #3366cc;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgb(51 102 204 / 0.15);
+    }
+    .info-item p {
+      margin-top: 0.3rem;
+      font-weight: 400;
+      font-size: 1rem;
+      color: #2f3d4a;
+    }
+
+    .gallery {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+      gap: 1rem;
+    }
+    .gallery-item {
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgb(74 144 226 / 0.12);
+      border-radius: 4px;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      border-radius: 4px;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    #map {
+      margin-top: 1rem;
+      width: 100%;
+      height: 400px;
+      box-shadow: 0 6px 25px rgb(74 144 226 / 0.15);
+    }
+
+    .btn-register {
+      margin-top: 3rem;
+      display: block;
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      padding: 1.1rem 0;
+      background: #4a90e2;
+      color: white;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(74,144,226,0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    .btn-register:hover,
+    .btn-register:focus {
+      background: #357ABD;
+      outline: none;
+      box-shadow: 0 12px 30px rgba(53, 122, 189, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.8rem 1rem;
+      color: #667581;
+      font-size: 0.9rem;
+    }
+
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      border-radius: 12px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.5rem; }
+      .info-grid { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+      .btn-register { font-size: 1.1rem; padding: 0.8rem 0; }
+    }
+  </style><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin=""></link></head><body>
+  <header><h1>Caminhada Jovem 2024</h1>
+    <nav><ul><li><a href="">Informa&ccedil;&otilde;es</a></li>
+        <li><a href="">Galeria</a></li>
+        <li><a href="">Mapa</a></li>
+      </ul></nav></header><main><section aria-labelledby="info-evento"><h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
+      <div class="info-grid">
+        <div class="info-item"><strong>Local</strong><p>Serra da Estrela, Portugal</p></div>
+        <div class="info-item"><strong>Dura&ccedil;&atilde;o</strong><p>3 dias (12-14 Julho 2024)</p></div>
+        <div class="info-item"><strong>Dist&acirc;ncia</strong><p>40 km em trilhos naturais</p></div>
+        <div class="info-item"><strong>Idade recomendada</strong><p>15 a 25 anos</p></div>
+      </div>
+    </section><section aria-labelledby="galeria"><h2 id="galeria">Locais a Visitar</h2>
+      <div class="gallery">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Vista panor&acirc;mica da Serra da Estrela"></img><div class="overlay"><strong>1. Centro de Visitantes</strong><br>Ponto de encontro e in&iacute;cio da caminhada.</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Trilha rodeada por &aacute;rvores verdes"></img><div class="overlay"><strong>2. Vale Glaciar do Z&ecirc;zere</strong><br>Vale impressionante formado por glaciares.</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Rio cristalino a correr pela montanha"></img><div class="overlay"><strong>3. Torre - Pico da Serra</strong><br>O ponto mais alto de Portugal continental.</div></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="P&ocirc;r do sol sobre a montanha"></img><div class="overlay"><strong>4. Lagoa Comprida</strong><br>Ideal para descanso e observa&ccedil;&atilde;o.</div></div>
+      </div>
+    </section><section aria-labelledby="mapa"><h2 id="mapa">Mapa da Caminhada</h2>
+      <div id="map"></div>
+    </section><a href="https://docs.google.com/forms/d/e/1FAIpQLScCaminhadaFormExampleURL/viewform" rel="noopener" class="btn-register" role="button" aria-label="Bot&atilde;o para inscri&ccedil;&atilde;o via Google Forms">
+      Inscreva-se Agora!
+    </a>
+  </main><footer>
+    &copy; 2024 Caminhada Jovem. Site criado para compartilhar este evento de forma intuitiva e moderna.
+  </footer></body></html>
