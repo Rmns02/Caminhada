@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Caminhada Jovem 2024 - Aventura na Serra</title>
+    <title>Roteiro Jovem - 2025</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
@@ -61,6 +60,7 @@
             padding: 1.8rem 2rem 2rem;
             box-shadow: 0 5px 20px rgba(74, 144, 226, 0.07);
             border-radius: 8px;
+            margin-bottom: 2rem;
         }
         h2 {
             border-left: 5px solid #4a90e2;
@@ -90,44 +90,21 @@
             color: #2f3d4a;
         }
 
-        .gallery {
+        .location-list {
             margin-top: 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-            gap: 1rem;
+            list-style: none;
+            padding: 0;
         }
-        .gallery-item {
-            position: relative;
+        .location-item {
+            background: #e8f0fe;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
             cursor: pointer;
+            transition: background 0.3s;
         }
-        .gallery img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.12);
-            border-radius: 4px;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            border-radius: 4px;
-            text-align: center;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-        }
-        .gallery-item.active .overlay {
-            opacity: 1;
+        .location-item:hover {
+            background: #d0e1fc;
         }
 
         #map {
@@ -177,7 +154,6 @@
             h1 { font-size: 2.2rem; }
             h2 { font-size: 1.5rem; }
             .info-grid { grid-template-columns: 1fr; }
-            .gallery { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
             .btn-register { font-size: 1.1rem; padding: 0.8rem 0; }
             #map {
                 height: 300px; /* Ajuste a altura para telas menores */
@@ -187,6 +163,49 @@
         .custom-div-icon {
             font-family: 'Poppins', sans-serif;
         }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-content img{
+            width: auto;
+            height: 250px;
+        
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.8rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
@@ -198,7 +217,7 @@
         <nav>
             <ul>
                 <li><a href="#info-evento">Informa&ccedil;&otilde;es</a></li>
-                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#galeria">Locais</a></li>
                 <li><a href="#mapa">Mapa</a></li>
             </ul>
         </nav>
@@ -207,32 +226,26 @@
         <section aria-labelledby="info-evento">
             <h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
             <div class="info-grid">
-                <div class="info-item"><strong>Local</strong><p>Serra da Estrela, Portugal</p></div>
-                <div class="info-item"><strong>Dura&ccedil;&atilde;o</strong><p>3 dias (12-14 Julho 2024)</p></div>
+                <div class="info-item"><strong>Local</strong><p>Santa Iria da Azóia</p></div>
                 <div class="info-item"><strong>Dist&acirc;ncia</strong><p>40 km em trilhos naturais</p></div>
-                <div class="info-item"><strong>Idade recomendada</strong><p>15 a 25 anos</p></div>
+                <div class="info-item"><strong>Horário de Partida</strong><p>9h</p></div>
+                <div class="info-item"><strong>Idade</strong><p>5 a 25 anos</p></div>
             </div>
         </section>
         <section aria-labelledby="galeria">
             <h2 id="galeria">Locais a Visitar</h2>
-            <div class="gallery">
-                <div class="gallery-item" onclick="toggleOverlay(this)">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Vista panor&acirc;mica da Serra da Estrela">
-                    <div class="overlay"><strong>1. Centro de Visitantes</strong><br>Ponto de encontro e in&iacute;cio da caminhada.</div>
-                </div>
-                <div class="gallery-item" onclick="toggleOverlay(this)">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Trilha rodeada por &aacute;rvores verdes">
-                    <div class="overlay"><strong>2. Vale Glaciar do Z&ecirc;zere</strong><br>Vale impressionante formado por glaciares.</div>
-                </div>
-                <div class="gallery-item" onclick="toggleOverlay(this)">
-                    <img src="https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="Rio cristalino a correr pela montanha">
-                    <div class="overlay"><strong>3. Torre - Pico da Serra</strong><br>O ponto mais alto de Portugal continental.</div>
-                </div>
-                <div class="gallery-item" onclick="toggleOverlay(this)">
-                    <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&amp;fit=crop&amp;w=400&amp;q=80" alt="P&ocirc;r do sol sobre a montanha">
-                    <div class="overlay"><strong>4. Lagoa Comprida</strong><br>Ideal para descanso e observa&ccedil;&atilde;o.</div>
-                </div>
-            </div>
+            <ul class="location-list">
+                <li class="location-item" onclick="showDescription(1)">1. Sociedade Recreativa 1º de Agosto</li>
+                <li class="location-item" onclick="showDescription(2)">2. Agita - Associação Cultural e Juvenil</li>
+                <li class="location-item" onclick="showDescription(3)">3. Castelo Pirescoxe</li>
+                <li class="location-item" onclick="showDescription(4)">4. Parque Urbano de Santa Iria da Azoia</li>
+                <li class="location-item" onclick="showDescription(5)">5. Trilho Junto ao Rio</li>
+                <li class="location-item" onclick="showDescription(6)">6. Associação Agregar</li>
+                <li class="location-item" onclick="showDescription(7)">7. Mercado de Vale de Figueira</li>
+                <li class="location-item" onclick="showDescription(8)">8. Café Adro Bobadela</li>
+                <li class="location-item" onclick="showDescription(9)">9. Quinta dos Remédios</li>
+                <li class="location-item" onclick="showDescription(10)">10. Ecoparque de São João da Talha</li>
+            </ul>
         </section>
         <section aria-labelledby="mapa">
             <h2 id="mapa">Mapa da Caminhada</h2>
@@ -241,6 +254,16 @@
         <a href="https://docs.google.com/forms/d/e/1FAIpQLScCaminhadaFormExampleURL/viewform" rel="noopener" class="btn-register" role="button" aria-label="Bot&atilde;o para inscri&ccedil;&atilde;o via Google Forms">
             Inscreva-se Agora!
         </a>
+
+        <div id="modal" style="display:none;" class="modal-overlay">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()">×</button>
+                <h3 id="modal-title"></h3>
+                <img id="modal-image" src="" alt="" style="width:100%; border-radius:8px; margin:1rem 0;">
+                <p id="modal-description"></p>
+            </div>
+        </div>
+
     </main>
     <footer>
         &copy;Caminhada Jovem 2025.
@@ -261,13 +284,13 @@
             { coords: [38.84690843683296, -9.086520418083422], title: "1. Sociedade Recreativa Musical 1 de Agosto Santa Iriense" },
             { coords: [38.8436989096854, -9.090579335282522], title: "2. Agita - Associação Cultural e Social" },
             { coords: [38.837123369622795, -9.091529160411499], title: "3. Castelo de Pirescoxe" },
-            { coords: [38.84917377299396, -9.099818877609708], title: "3. Parque Urbano de Santa Iria de Azóia" },
-            { coords: [38.834060, -9.114564], title: "4. Trilho junto ao rio" },
-            { coords: [38.8254838921904, -9.10243816524196], title: "5. Associação Agregar" },
-            { coords: [38.82466572536972, -9.102132857328312], title: "6. Mercado de Vale Figueira" },
-            { coords: [38.80327090388599, -9.099232804594806], title: "6. Café O Adro" },
-            { coords: [38.813243048938865, -9.099374077611841], title: "7. Parque da Quinta dos Remédios" },
-            { coords: [38.823030739207674, -9.100429573903483], title: "8. Ecoparque de São João da Talha" }
+            { coords: [38.84917377299396, -9.099818877609708], title: "4. Parque Urbano de Santa Iria de Azóia" },
+            { coords: [38.834060, -9.114564], title: "5. Trilho junto ao rio" },
+            { coords: [38.8254838921904, -9.10243816524196], title: "6. Associação Agregar" },
+            { coords: [38.82466572536972, -9.102132857328312], title: "7. Mercado de Vale Figueira" },
+            { coords: [38.80327090388599, -9.099232804594806], title: "8. Café O Adro" },
+            { coords: [38.813243048938865, -9.099374077611841], title: "9. Parque da Quinta dos Remédios" },
+            { coords: [38.823030739207674, -9.100429573903483], title: "10. Ecoparque de São João da Talha" }
         ];
 
         var markers = L.markerClusterGroup();
@@ -292,10 +315,73 @@
             L.polyline(latlngs, { color: 'blue' }).addTo(map);
         }
 
-        // Função para alternar a sobreposição das imagens
-        function toggleOverlay(element) {
-            element.classList.toggle('active');
+       function showDescription(locationId) {
+    const data = {
+        1: {
+            title: "Sociedade Recreativa 1º de Agosto",
+            image: "/fotos/parqueurbano.png",
+            description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades..."
+        },
+        2: {
+            title: "Agita - Associação Cultural e Juvenil",
+            image: "/fotos/parqueurbano.png",
+            description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar..."
+        },
+        3: {
+            title: "Castelo de Pirescoxe",
+            image: "/fotos/parqueurbano.png",
+            description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
+        },
+        4: {
+            title: "Parque Urbano de Santa Iria da Azoia",
+            image: "/fotos/parqueurbano.png",
+            description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada..."
+        },
+        5: {
+            title: "Trilho Junto ao Rio",
+            image: "/fotos/parqueurbano.png",
+            description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza..."
+        },
+        6: {
+            title: "Associação Agregar",
+            image: "/fotos/parqueurbano.png",
+            description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto..."
+        },
+        7: {
+            title: "Mercado de Vale de Figueira",
+            image: "/fotos/parqueurbano.png",
+            description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia..."
+        },
+        8: {
+            title: "Café Adro Bobadela",
+            image: "/fotos/parqueurbano.png",
+            description: "O Café Adro Bobadela é um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal..."
+        },
+        9: {
+            title: "Quinta dos Remédios",
+            image: "/fotos/parqueurbano.png",
+            description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
+        },
+        10: {
+            title: "Ecoparque de São João da Talha",
+            image: "/fotos/parqueurbano.png",
+            description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
         }
+    };
+
+    const item = data[locationId];
+    if (item) {
+        document.getElementById("modal-title").textContent = item.title;
+        document.getElementById("modal-image").src = item.image;
+        document.getElementById("modal-description").textContent = item.description;
+        document.getElementById("modal").style.display = "flex";
+    }
+}
+
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
     </script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
     <script src="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
