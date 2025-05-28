@@ -243,13 +243,13 @@
         </a>
     </main>
     <footer>
-        &copy; 2024 Caminhada Jovem. Site criado para compartilhar este evento de forma intuitiva e moderna.
+        &copy;Caminhada Jovem 2025.
     </footer>
 
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
-        var map = L.map('map').setView([40.3402, -7.6109], 13); // Coordenadas de exemplo
+        var map = L.map('map').setView([38.83771708425723, -9.087882453647572], 13); // Coordenadas de exemplo
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -258,10 +258,16 @@
 
         // Adicionando marcadores
         var locations = [
-            { coords: [40.3402, -7.6109], title: "1. Centro de Visitantes" },
-            { coords: [40.3350, -7.6100], title: "2. Vale Glaciar do Zêzere" },
-            { coords: [40.3600, -7.6200], title: "3. Torre - Pico da Serra" },
-            { coords: [40.3500, -7.6300], title: "4. Lagoa Comprida" }
+            { coords: [38.84690843683296, -9.086520418083422], title: "1. Sociedade Recreativa Musical 1 de Agosto Santa Iriense" },
+            { coords: [38.8436989096854, -9.090579335282522], title: "2. Agita - Associação Cultural e Social" },
+            { coords: [38.837123369622795, -9.091529160411499], title: "3. Castelo de Pirescoxe" },
+            { coords: [38.84917377299396, -9.099818877609708], title: "3. Parque Urbano de Santa Iria de Azóia" },
+            { coords: [38.834060, -9.114564], title: "4. Trilho junto ao rio" },
+            { coords: [38.8254838921904, -9.10243816524196], title: "5. Associação Agregar" },
+            { coords: [38.82466572536972, -9.102132857328312], title: "6. Mercado de Vale Figueira" },
+            { coords: [38.80327090388599, -9.099232804594806], title: "6. Café O Adro" },
+            { coords: [38.813243048938865, -9.099374077611841], title: "7. Parque da Quinta dos Remédios" },
+            { coords: [38.823030739207674, -9.100429573903483], title: "8. Ecoparque de São João da Talha" }
         ];
 
         var markers = L.markerClusterGroup();
