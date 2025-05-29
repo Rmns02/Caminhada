@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Roteiro Jovem</title>
+    <title>Roteiro Jovem - 2025</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
@@ -320,10 +320,39 @@
         <section>
             <h2>Objetivo</h2>
             <p>O objetivo deste site é ....</p>
-         </section>
-        
+         </section>    
+        <section aria-labelledby="info-evento">
+            <h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
+            <div class="info-grid">
+                <div class="info-item"><strong>Local</strong><p>Santa Iria da Azóia</p></div>
+                <div class="info-item"><strong>Dist&acirc;ncia</strong><p>40 km em trilhos naturais</p></div>
+                <div class="info-item"><strong>Horário de Partida</strong><p>9h</p></div>
+                <div class="info-item"><strong>Idade</strong><p>5 a 25 anos</p></div>
+            </div>
+        </section>
+        <section aria-labelledby="galeria">
+            <h2 id="galeria">Locais a Visitar</h2>
+            <ul class="location-list">
+                <li class="location-item" onclick="showDescription(1)">1. Sociedade Recreativa 1º de Agosto</li>
+                <li class="location-item" onclick="showDescription(2)">2. Agita - Associação Cultural e Juvenil</li>
+                <li class="location-item" onclick="showDescription(3)">3. Castelo Pirescoxe</li>
+                <li class="location-item" onclick="showDescription(4)">4. Parque Urbano de Santa Iria da Azoia</li>
+                <li class="location-item" onclick="showDescription(5)">5. Trilho Junto ao Rio</li>
+                <li class="location-item" onclick="showDescription(6)">6. Associação Agregar</li>
+                <li class="location-item" onclick="showDescription(7)">7. Mercado de Vale de Figueira</li>
+                <li class="location-item" onclick="showDescription(8)">8. Café Adro Bobadela</li>
+                <li class="location-item" onclick="showDescription(9)">9. Quinta dos Remédios</li>
+                <li class="location-item" onclick="showDescription(10)">10. Ecoparque de São João da Talha</li>
+            </ul>
+        </section>
+        <section aria-labelledby="mapa">
+            <h2 id="mapa">Mapa da Caminhada</h2>
+            <div id="map"></div>
+        </section>
+
+        <!-- New Photo Gallery Section -->
         <section class="gallery-section" aria-labelledby="galeria-fotos">
-            <h2>Locais a visitar</h2>
+            <h2 id="galeria-fotos" class="gallery-title">Galeria de Fotos</h2>
             <div class="gallery-container">
                 <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
                 <div id="locationName" class="location-name"></div>
@@ -339,36 +368,7 @@
                 </button>
             </div>
         </section>
-        
-        <section aria-labelledby="info-evento">
-            <h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
-            <div class="info-grid">
-                <div class="info-item"><strong>Local</strong><p>Santa Iria da Azóia</p></div>
-                <div class="info-item"><strong>Dist&acirc;ncia</strong><p>40 km em trilhos naturais</p></div>
-                <div class="info-item"><strong>Horário de Partida</strong><p>9h</p></div>
-                <div class="info-item"><strong>Idade</strong><p>5 a 25 anos</p></div>
-            </div>
-        </section>
-        <section aria-labelledby="galeria">
-            <h2 id="galeria">Descrição dos locais</h2>
-            <ul class="location-list">
-                <li class="location-item" onclick="showDescription(1)">1. Sociedade Recreativa 1º de Agosto</li>
-                <li class="location-item" onclick="showDescription(2)">2. Agita - Associação Cultural e Juvenil</li>
-                <li class="location-item" onclick="showDescription(3)">3. Castelo Pirescoxe</li>
-                <li class="location-item" onclick="showDescription(4)">4. Parque Urbano de Santa Iria da Azoia</li>
-                <li class="location-item" onclick="showDescription(5)">5. Trilho Junto ao Rio</li>
-                <li class="location-item" onclick="showDescription(6)">6. Associação Agregar</li>
-                <li class="location-item" onclick="showDescription(7)">7. Mercado de Vale de Figueira</li>
-                <li class="location-item" onclick="showDescription(10)">8. Ecoparque de São João da Talha</li>
-                <li class="location-item" onclick="showDescription(9)">9. Quinta dos Remédios</li>
-                <li class="location-item" onclick="showDescription(8)">10. Café Adro Bobadela</li>
-            </ul>
-        </section>
-        <section aria-labelledby="mapa">
-            <h2 id="mapa">Mapa da Caminhada</h2>
-            <div id="map"></div>
-        </section>
-        
+
         <div id="modal" style="display:none;" class="modal-overlay">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal()">×</button>
@@ -386,7 +386,7 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
     <script>
-        var map = L.map('map').setView([38.83771708425723, -9.087882453647572], 13); // Coordenadas início do mapa
+        var map = L.map('map').setView([38.83771708425723, -9.087882453647572], 13); // Coordenadas de exemplo
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
@@ -402,9 +402,9 @@
             { coords: [38.834060, -9.114564], title: "5. Trilho junto ao rio" },
             { coords: [38.8254838921904, -9.10243816524196], title: "6. Associação Agregar" },
             { coords: [38.82466572536972, -9.102132857328312], title: "7. Mercado de Vale Figueira" },
-            { coords: [38.823030739207674, -9.100429573903483], title: "8. Ecoparque de São João da Talha" },
+            { coords: [38.80327090388599, -9.099232804594806], title: "8. Café O Adro" },
             { coords: [38.813243048938865, -9.099374077611841], title: "9. Parque da Quinta dos Remédios" },
-            { coords: [38.80327090388599, -9.099232804594806], title: "10. Café O Adro" }
+            { coords: [38.823030739207674, -9.100429573903483], title: "10. Ecoparque de São João da Talha" }
         ];
 
         var markers = L.markerClusterGroup();
@@ -433,103 +433,54 @@
             const data = {
                 1: {
                     title: "Sociedade Recreativa 1º de Agosto",
-                    image: "fotos/sociedade1agosto.jpg",
-                    description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar
-                                diversos tipos de aulas de música, dança e ginástica para todas as idades. Oferece uma
-                                vasta gama de espetáculos, incluindo concertos e teatros.
-                                É um espaço com bastante potencial, com diversas actividades para os jovens
-                                enriquecerem-se a nível cultural e que deve ser mais promovido de forma a chegar a todos
-                                os jovens para que estes conheçam e possam usufruir dos serviços que este espaço tem
-                                para oferecer.
-                                Se quiseres saber mais sobre as atividades que este espaço tem para te oferecer podes
-                                seguir no instagram @soc.1.agosto ou no facebook @Sociedade 1º de Agosto Santa
-                                Iriense."
+                    image: "fotos/parqueurbano.png",
+                    description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades..."
                 },
                 2: {
                     title: "Agita - Associação Cultural e Juvenil",
-                    image: "fotos/agita.png",
-                    description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar.
-                                    Neste momento possui duas valências que são a Companhia de Teatro e o Centro de Artes
-                                    e Gabinete Psicossocial. A Companhia de Teatro é a principal especialização da Agita e tem
-                                    estado presente em vários pontos do país, bem como na nossa freguesia. O Centro de
-                                    Artes tem disponíveis aulas de Guitarra Clássica, Piano e Canto/Técnica Vocal. E o
-                                    Gabinete Psicossocial possui Avaliação Psicológica e Acompanhamento Psicológico para
-                                    Crianças, Jovens e Adultos.
-                                    Se quiseres usufruir das vantagens que esta associação tem para oferecer podes tornar-te
-                                    Sócio da Agita.
-                                    Para saberes mais sobre esta associação podes ver o site deles
-                                    https://www.agitaculturalesocial.com/associacao, ou seguilos no instagram
-                                    @agitaculturalesocial e no facebook @Agita, Associação cultural e social."
+                    image: "fotos/parqueurbano.png",
+                    description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar..."
                 },
                 3: {
                     title: "Castelo de Pirescoxe",
-                    image: "fotos/CastelodePirescoxe.jpg",
+                    image: "fotos/parqueurbano.png",
                     description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
                 },
                 4: {
                     title: "Parque Urbano de Santa Iria da Azoia",
                     image: "fotos/parqueurbano.png",
-                    description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para
-                                    corrida ou caminhada, 2 parques infantis, uma pista de skate, várias mesas para
-                                    piqueniques, um espaço com insufláveis onde podem também ser feitas festas de
-                                    aniversário infantis, possui também ginásio ao ar livre, além de ter casas de banho.
-                                    É um espaço bastante agradável para todas as idades usufruírem.
-                                    Para se tornar ainda melhor podiam ser feitas algumas melhorias como, abrir mais cedo e
-                                    fechar mais tarde, as mesas de piquenique podiam ter manutenção, uma vez que algumas
-                                    já estão a ficar danificadas, e podiam ser construídas mais mesas. Podia ser feita uma
-                                    cafetaria com esplanada onde os jovens pudessem estar e ou estudar. E as casas de banho
-                                    deviam de ter mais limpeza e manutenção)"
+                    description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada..."
                 },
                 5: {
                     title: "Trilho Junto ao Rio",
-                    image: "fotos/caminhofatima.png",
-                    description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável
-                                    pela natureza. Possui pelo menos três acessos, um junto ao Parque Urbano de Santa Iria
-                                    do lado da Rulote da Portela, outro na Rua do Poço em São João da Talha e outro no
-                                    Bairro da Fraternidade.
-                                    Os acessos podem ser reabilitados e promovidos de forma a serem mais conhecidos pela
-                                    nossa população para que todos possamos usufruir deste passeio."
+                    image: "fotos/parqueurbano.png",
+                    description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza..."
                 },
                 6: {
                     title: "Associação Agregar",
-                    image: "fotos/agregar.png",
-                    description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as
-                                    crianças e jovens pudessem fazer desporto sem ter de gastar dinheiro. Disponibiliza
-                                    treinos de rugby. Neste momento possui também um centro de apoio ao estudo para as
-                                    crianças da escolinha que é feito na sede da associação Agregar.
-                                    O trabalho desta associação podia ser mais divulgado de forma que os possamos ajudar
-                                    a crescer e ajudar mais crianças. Podíamos ajudar a reabilitar a Sede da Associação
-                                    Agregar que tem potencial para ser um espaço de convívio para os jovens.
-                                    Se quiseres saber mais sobre esta associação podes segui-los no instagram
-                                    @esc.rugby_sao_joao_talha ou no facebook @Agregar Associação."
+                    image: "fotos/parqueurbano.png",
+                    description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto..."
                 },
                 7: {
                     title: "Mercado de Vale de Figueira",
-                    image: "fotos/mercado.png",
-                    description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e
-                                festas da nossa freguesia. No entanto, encontra-se bastante degradado e não possui uma
-                                boa acústica para fazer por exemplo concertos e apresentações.
-                                Podia ser reabilitado de forma a transformar se num espaço multiusos, com um bar, casas
-                                de banho, espaço para fazer festas com um palco, ou para servir de auditório para dar lugar
-                                a palestras."
+                    image: "fotos/parqueurbano.png",
+                    description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia..."
                 },
                 8: {
-                    title: "Ecoparque de São João da Talha",
-                    image: "fotos/ecoparque.png",
-                    description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
+                    title: "Café Adro Bobadela",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Café Adro Bobadela é um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal..."
                 },
                 9: {
                     title: "Quinta dos Remédios",
-                    image: "fotos/quintadosremedios.png",
+                    image: "fotos/parqueurbano.png",
                     description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
                 },
                 10: {
-                    title: "Café Adro Bobadela",
-                    image: "fotos/cafeoadro.jpg",
-                    description: "É um espaço bastante agradável, com um bom espaço de esplanada e com vista para a
-                                    zona florestal. Possui mesas de piquenique e é um espaço bastante agradável para os
-                                    jovens se encontrarem."
-                    }
+                    title: "Ecoparque de São João da Talha",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
+                }
             };
 
             const item = data[locationId];
@@ -548,16 +499,11 @@
         // Photo Gallery Script
         (function(){
             const photos = [
-                { src: "fotos/sociedade1agosto.jpg", location: "Sociedade Recreativa 1º de Agosto" },
-                { src: "fotos/agita.png", location: "Agita - Associação Cultural e Juvenil" },
-                { src: "fotos/CastelodePirescoxe.jpg", location: "Castelo de Pirescoxe" },
-                { src: "fotos/parqueurbano.png", location: "Parque Urbano de Santa Iria da Azóia" },
-                { src: "fotos/caminhofatima.png", location: "Trilho Junto ao Rio" },
-                { src: "fotos/agregar.png", location: "Associação Agregar" },
-                { src: "fotos/mercado.png", location: "Mercado de Vale de Figueira" },
-                { src: "fotos/ecoparque.png", location: "Ecoparque de São João da Talha" },
-                { src: "fotos/quintadosremedios.png", location: "Quinta dos Remédios" },
-                { src: "fotos/cafeoadro.jpg", location: "Café Adro Bobadela" },
+                { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", location: "Praia do Rosa" },
+                { src: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80", location: "Chapada Diamantina" },
+                { src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f5d?auto=format&fit=crop&w=800&q=80", location: "Pantanal MS" },
+                { src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80", location: "Lençóis Maranhenses" },
+                { src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80", location: "Iguazu Falls" }
             ];
 
             let currentIndex = 0;
@@ -593,4 +539,3 @@
     <script src="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
 </body>
 </html>
-
