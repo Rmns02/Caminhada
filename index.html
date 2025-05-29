@@ -185,14 +185,16 @@
 
         .modal-content {
             background: white;
-            padding: 2rem;
+            padding: 1rem; /* Ajuste o padding se necessário */
             border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
+            max-width: 90%; /* Ajuste a largura máxima */
+            max-height: 80%; /* Limite a altura do pop-up */
+            overflow-y: auto; /* Permite rolagem vertical */
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             text-align: center;
         }
+
 
         .modal-close {
             position: absolute;
@@ -205,7 +207,6 @@
             color: #333;
         }
 
-        /* Gallery Styles */
         .gallery-section {
             background: #ffffff;
             box-shadow: 0 6px 18px rgba(13, 71, 161, 0.15);
@@ -213,14 +214,6 @@
             padding: 1.5rem 1rem 2rem;
             user-select: none;
             margin-bottom: 2rem;
-        }
-
-        .gallery-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 600;
-            color: #0d47a1;
-            margin-bottom: 1.75rem;
         }
 
         .gallery-container {
@@ -251,7 +244,6 @@
             border-radius: 8px;
         }
 
-        /* Navigation arrows */
         .nav-arrow {
             position: absolute;
             top: 50%;
@@ -324,7 +316,7 @@
 
      <!-- New Photo Gallery Section -->
         <section class="gallery-section" aria-labelledby="galeria-fotos">
-            <h2 id="galeria-fotos" class="gallery-title">Galeria de Fotos</h2>
+            <h2 id="galeria-fotos">Galeria de Fotos</h2>
             <div class="gallery-container">
                 <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
                 <div id="locationName" class="location-name"></div>
