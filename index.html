@@ -321,6 +321,26 @@
             <h2>Objetivo</h2>
             <p>O objetivo deste site é ....</p>
          </section>    
+
+     <!-- New Photo Gallery Section -->
+        <section class="gallery-section" aria-labelledby="galeria-fotos">
+            <h2 id="galeria-fotos" class="gallery-title">Galeria de Fotos</h2>
+            <div class="gallery-container">
+                <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
+                <div id="locationName" class="location-name"></div>
+                <button class="nav-arrow left" id="leftArrow" aria-label="Foto anterior" title="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" />
+                    </svg>
+                </button>
+                <button class="nav-arrow right" id="rightArrow" aria-label="Próxima foto" title="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        
         <section aria-labelledby="info-evento">
             <h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
             <div class="info-grid">
@@ -348,25 +368,6 @@
         <section aria-labelledby="mapa">
             <h2 id="mapa">Mapa da Caminhada</h2>
             <div id="map"></div>
-        </section>
-
-        <!-- New Photo Gallery Section -->
-        <section class="gallery-section" aria-labelledby="galeria-fotos">
-            <h2 id="galeria-fotos" class="gallery-title">Galeria de Fotos</h2>
-            <div class="gallery-container">
-                <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
-                <div id="locationName" class="location-name"></div>
-                <button class="nav-arrow left" id="leftArrow" aria-label="Foto anterior" title="Foto anterior">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18L9 12L15 6" />
-                    </svg>
-                </button>
-                <button class="nav-arrow right" id="rightArrow" aria-label="Próxima foto" title="Próxima foto">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" />
-                    </svg>
-                </button>
-            </div>
         </section>
 
         <div id="modal" style="display:none;" class="modal-overlay">
@@ -496,14 +497,19 @@
             document.getElementById("modal").style.display = "none";
         }
 
-        // Photo Gallery Script
+    // Photo Gallery Script
         (function(){
             const photos = [
-                { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", location: "Praia do Rosa" },
-                { src: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80", location: "Chapada Diamantina" },
-                { src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f5d?auto=format&fit=crop&w=800&q=80", location: "Pantanal MS" },
-                { src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80", location: "Lençóis Maranhenses" },
-                { src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80", location: "Iguazu Falls" }
+                { src: "fotos/sociedade1agosto.jpg", location: "Sociedade Recreativa 1º de Agosto" },
+                { src: "fotos/agita.png", location: "Agita - Associação Cultural e Juvenil" },
+                { src: "fotos/CastelodePirescoxe.jpg", location: "Castelo de Pirescoxe" },
+                { src: "fotos/parqueurbano.png", location: "Parque Urbano de Santa Iria da Azóia" },
+                { src: "fotos/caminhofatima.png", location: "Trilho Junto ao Rio" },
+                { src: "fotos/agregar.png", location: "Associação Agregar" },
+                { src: "fotos/mercado.png", location: "Mercado de Vale de Figueira" },
+                { src: "fotos/ecoparque.png", location: "Ecoparque de São João da Talha" },
+                { src: "fotos/quintadosremedios.png", location: "Quinta dos Remédios" },
+                { src: "fotos/cafeoadro.jpg", location: "Café Adro Bobadela" },
             ];
 
             let currentIndex = 0;
