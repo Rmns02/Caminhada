@@ -205,7 +205,108 @@
             color: #333;
         }
 
+        /* Gallery Styles */
+        .gallery-section {
+            background: #ffffff;
+            box-shadow: 0 6px 18px rgba(13, 71, 161, 0.15);
+            border-radius: 12px;
+            padding: 1.5rem 1rem 2rem;
+            user-select: none;
+            margin-bottom: 2rem;
+        }
 
+        .gallery-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #0d47a1;
+            margin-bottom: 1.75rem;
+        }
+
+        .gallery-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .gallery-image {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            height: 450px;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
+        }
+
+        .location-name {
+            position: absolute;
+            bottom: 18px;
+            left: 20px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            background: rgba(13, 71, 161, 0.6);
+            padding: 0.25rem 0.65rem 0.35rem 0.65rem;
+            border-radius: 8px;
+        }
+
+        /* Navigation arrows */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(13, 71, 161, 0.8);
+            border-radius: 50%;
+            color: white;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 10px rgba(13, 71, 161, 0.4);
+        }
+        .nav-arrow:hover {
+            background: #09327d;
+        }
+        .nav-arrow.left {
+            left: 8px;
+        }
+        .nav-arrow.right {
+            right: 8px;
+        }
+
+        /* Arrow SVG styling */
+        .nav-arrow svg {
+            width: 22px;
+            height: 22px;
+            stroke: white;
+            stroke-width: 3;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-image {
+                height: 280px;
+            }
+            .nav-arrow {
+                width: 38px;
+                height: 38px;
+            }
+            .nav-arrow svg {
+                width: 16px;
+                height: 16px;
+                stroke-width: 2.5;
+            }
+            .location-name {
+                font-size: 1rem;
+                bottom: 14px;
+                left: 12px;
+                padding: 0.15rem 0.5rem 0.25rem 0.5rem;
+            }
+        }
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
@@ -219,7 +320,26 @@
         <section>
             <h2>Objetivo</h2>
             <p>O objetivo deste site é ....</p>
-         </section>    
+         </section>
+        
+        <section class="gallery-section" aria-labelledby="galeria-fotos">
+            <h2>Galeria de Fotos</h2>
+            <div class="gallery-container">
+                <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
+                <div id="locationName" class="location-name"></div>
+                <button class="nav-arrow left" id="leftArrow" aria-label="Foto anterior" title="Foto anterior">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" />
+                    </svg>
+                </button>
+                <button class="nav-arrow right" id="rightArrow" aria-label="Próxima foto" title="Próxima foto">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" />
+                    </svg>
+                </button>
+            </div>
+        </section>
+        
         <section aria-labelledby="info-evento">
             <h2 id="info-evento">Informa&ccedil;&otilde;es do Evento</h2>
             <div class="info-grid">
@@ -248,6 +368,7 @@
             <h2 id="mapa">Mapa da Caminhada</h2>
             <div id="map"></div>
         </section>
+        
         <div id="modal" style="display:none;" class="modal-overlay">
             <div class="modal-content">
                 <button class="modal-close" onclick="closeModal()">×</button>
@@ -308,75 +429,114 @@
             L.polyline(latlngs, { color: 'blue' }).addTo(map);
         }
 
-       function showDescription(locationId) {
-    const data = {
-        1: {
-            title: "Sociedade Recreativa 1º de Agosto",
-            image: "fotos/parqueurbano.png",
-            description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades..."
-        },
-        2: {
-            title: "Agita - Associação Cultural e Juvenil",
-            image: "fotos/parqueurbano.png",
-            description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar..."
-        },
-        3: {
-            title: "Castelo de Pirescoxe",
-            image: "fotos/parqueurbano.png",
-            description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
-        },
-        4: {
-            title: "Parque Urbano de Santa Iria da Azoia",
-            image: "fotos/parqueurbano.png",
-            description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada..."
-        },
-        5: {
-            title: "Trilho Junto ao Rio",
-            image: "fotos/parqueurbano.png",
-            description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza..."
-        },
-        6: {
-            title: "Associação Agregar",
-            image: "fotos/parqueurbano.png",
-            description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto..."
-        },
-        7: {
-            title: "Mercado de Vale de Figueira",
-            image: "fotos/parqueurbano.png",
-            description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia..."
-        },
-        8: {
-            title: "Café Adro Bobadela",
-            image: "fotos/parqueurbano.png",
-            description: "O Café Adro Bobadela é um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal..."
-        },
-        9: {
-            title: "Quinta dos Remédios",
-            image: "fotos/parqueurbano.png",
-            description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
-        },
-        10: {
-            title: "Ecoparque de São João da Talha",
-            image: "fotos/parqueurbano.png",
-            description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
+        function showDescription(locationId) {
+            const data = {
+                1: {
+                    title: "Sociedade Recreativa 1º de Agosto",
+                    image: "fotos/parqueurbano.png",
+                    description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades..."
+                },
+                2: {
+                    title: "Agita - Associação Cultural e Juvenil",
+                    image: "fotos/parqueurbano.png",
+                    description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar..."
+                },
+                3: {
+                    title: "Castelo de Pirescoxe",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
+                },
+                4: {
+                    title: "Parque Urbano de Santa Iria da Azoia",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada..."
+                },
+                5: {
+                    title: "Trilho Junto ao Rio",
+                    image: "fotos/parqueurbano.png",
+                    description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza..."
+                },
+                6: {
+                    title: "Associação Agregar",
+                    image: "fotos/parqueurbano.png",
+                    description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto..."
+                },
+                7: {
+                    title: "Mercado de Vale de Figueira",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia..."
+                },
+                8: {
+                    title: "Café Adro Bobadela",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Café Adro Bobadela é um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal..."
+                },
+                9: {
+                    title: "Quinta dos Remédios",
+                    image: "fotos/parqueurbano.png",
+                    description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
+                },
+                10: {
+                    title: "Ecoparque de São João da Talha",
+                    image: "fotos/parqueurbano.png",
+                    description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
+                }
+            };
+
+            const item = data[locationId];
+            if (item) {
+                document.getElementById("modal-title").textContent = item.title;
+                document.getElementById("modal-image").src = item.image;
+                document.getElementById("modal-description").textContent = item.description;
+                document.getElementById("modal").style.display = "flex";
+            }
         }
-    };
 
-    const item = data[locationId];
-    if (item) {
-        document.getElementById("modal-title").textContent = item.title;
-        document.getElementById("modal-image").src = item.image;
-        document.getElementById("modal-description").textContent = item.description;
-        document.getElementById("modal").style.display = "flex";
-    }
-}
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
 
+        // Photo Gallery Script
+        (function(){
+            const photos = [
+                { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", location: "Praia do Rosa" },
+                { src: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80", location: "Chapada Diamantina" },
+                { src: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f5d?auto=format&fit=crop&w=800&q=80", location: "Pantanal MS" },
+                { src: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80", location: "Lençóis Maranhenses" },
+                { src: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80", location: "Iguazu Falls" }
+            ];
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
+            let currentIndex = 0;
+            const galleryImage = document.getElementById('galleryImage');
+            const locationName = document.getElementById('locationName');
+            const leftArrow = document.getElementById('leftArrow');
+            const rightArrow = document.getElementById('rightArrow');
+
+            function updateGallery() {
+                const photo = photos[currentIndex];
+                galleryImage.src = photo.src;
+                galleryImage.alt = `Imagem do local: ${photo.location}`;
+                locationName.textContent = photo.location;
+            }
+
+            function showPrevious() {
+                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+                updateGallery();
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % photos.length;
+                updateGallery();
+            }
+
+            leftArrow.addEventListener('click', showPrevious);
+            rightArrow.addEventListener('click', showNext);
+
+            updateGallery();
+        })();
     </script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
     <script src="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
 </body>
 </html>
+
