@@ -4,314 +4,191 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Roteiro Jovem - 2025</title>
-    <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
-    *, *::before, *::after {
-        box-sizing: border-box;
-    }
-    body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        background: #f4f6f8;
-        color: #333;
-        line-height: 1.6;
-    }
-    header {
-        background: linear-gradient(135deg, #4a90e2, #357ABD);
-        padding: 2rem 1.5rem;
-        text-align: center;
-        color: white;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-    header h1 {
-        font-weight: 700;
-        font-size: 2.8rem;
-        margin: 0;
-    }
-    main {
-        max-width: 900px;
-        margin: 2rem auto 4rem;
-        padding: 0 1rem;
-    }
-    section {
-        background: white;
-        padding: 1.8rem 2rem 2rem;
-        box-shadow: 0 5px 20px rgba(74, 144, 226, 0.07);
-        border-radius: 8px;
-        margin-bottom: 2rem;
-    }
-    h2 {
-        border-left: 5px solid #4a90e2;
-        padding-left: 0.75rem;
-        margin-top: 2rem;
-        font-weight: 700;
-        font-size: 1.9rem;
-    }
-    .info-grid {
-        display: grid;
-        gap: 1.4rem;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        margin-top: 1rem;
-    }
-    .info-item {
-        background: #e8f0fe;
-        padding: 1rem 1.25rem;
-        border-radius: 8px;
-        color: #3366cc;
-        font-weight: 600;
-        box-shadow: 0 2px 6px rgba(51, 102, 204, 0.15);
-    }
-    .info-item p {
-        margin-top: 0.3rem;
-        font-weight: 400;
-        font-size: 1rem;
-        color: #2f3d4a;
-    }
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f8;
+    color: #333;
+    line-height: 1.6;
+}
+header {
+    background: linear-gradient(135deg, #4a90e2, #357ABD);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+header h1 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin: 0;
+}
+main {
+    max-width: 900px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+}
 
-    #map {
-        margin-top: 1rem;
-        width: 100%;
-        height: 400px;
-        box-shadow: 0 6px 25px rgba(74, 144, 226, 0.15);
-    }
+.location-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin-top: 1rem;
+}
 
-    footer {
-        text-align: center;
-        padding: 1.8rem 1rem;
-        color: #667581;
-        font-size: 0.9rem;
-    }
+.location-item {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
 
-    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
-        border-radius: 12px;
-    }
+.location-item img {
+    width: 100%;
+    height: 170px;
+    display: block;
+    object-fit: cover;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    flex-shrink: 0;
+}
 
-    @media (max-width: 600px) {
-        h1 { font-size: 2.2rem; }
-        h2 { font-size: 1.5rem; }
-        .info-grid { grid-template-columns: 1fr; }
-        .btn-register { font-size: 1.1rem; padding: 0.8rem 0; }
-        #map {
-            height: 300px; /* Ajuste a altura para telas menores */
-        }
-    }
+.location-name {
+    background: #e8f0fe;
+    color: #1a3c7a;
+    text-align: center;
+    padding: 0.6rem 0.75rem;
+    font-weight: 700;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    line-height: 1.3;
+    user-select: none;
+    white-space: normal;
+    overflow-wrap: break-word;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px; /* altura mínima para evitar que o texto fique apertado */
+    box-sizing: border-box;
+}
 
-    .custom-div-icon {
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .modal-overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100vw; height: 100vh;
-        background-color: rgba(0,0,0,0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-        padding: 1rem;
-    }
-
-    .modal-content {
-        background: white;
-        border-radius: 12px;
-        max-width: 500px;
-        width: 100%;
-        max-height: 85vh;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .modal-close {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        background: none;
-        border: none;
-        font-size: 1.6rem;
-        cursor: pointer;
-        color: red;
-        z-index: 10;
-    }
-
-    .modal-body {
-        display: flex;
-        flex-direction: column;
-        overflow-y: auto;
-        padding: 1.5rem 1rem 1rem;
-    }
-
-    .modal-body img {
-        width: auto;
-        max-width: 100%;
-        max-height: 250px;
-        margin-bottom: 1rem;
-        border-radius: 8px;
-        align-self: center;
-        object-fit: contain;
-    }
-
-    .modal-body h3 {
-        margin: 0 0 0.8rem;
-        align-self: center; 
-        font-weight: 700;
-        font-size: 1.3rem;
-        color: #0d47a1;
-    }
-        
-    .modal-body p {
-        font-size: 1rem;
-        line-height: 1.4;
-        color: #444;
-        text-align: justify; /* Justifica o texto */
-    }
-        
-    /* Ao reduzir a tela deixar o modal ocupar quase toda a largura e altura */
-    @media (max-width: 480px) {
-        .modal-content {
-            max-width: 90vw;
-            max-height: 90vh;
-        }
-        .modal-body img {
-            max-height: 180px;
-        }
-    }
-                 
-    .gallery-section {
-        background: #ffffff;
-        box-shadow: 0 6px 18px rgba(13, 71, 161, 0.15);
-        border-radius: 12px;
-        padding: 1.5rem 1rem 2rem;
-        user-select: none;
-        margin-bottom: 2rem;
-    }
-
-    .gallery-container {
-        position: relative;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-
-    .gallery-image {
-        width: 100%;
-        display: block;
-        height: 450px;
-        object-fit: cover;
-        box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
-    }
-
+@media (max-width: 600px) {
     .location-list {
-        list-style: none;
-        padding: 0;
-        display: grid;
-        gap: 1.4rem;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        margin-top: 1rem;
+        grid-template-columns: 1fr;
     }
-    
-    .location-item {
-        cursor: pointer;
-        overflow: hidden;
-        position: relative;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        display: flex;
-        flex-direction: column;
-        height: 190px; /* ligeiro aumento da altura total para acomodar imagem maior */
-        border-radius: 8px;
-    }
-    
     .location-item img {
-        width: 100%;
-        height: 160px; /* altura aumentada da imagem */
-        display: block;
-        object-fit: cover;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        flex-shrink: 0;
+        height: 140px; /* altura da imagem em telas menores */
     }
-    
     .location-name {
-        background: #e8f0fe;
-        color: #1a3c7a;
-        text-align: center;
-        padding: 0.4rem 0.5rem;
-        font-weight: bold;
-        flex-grow: 1;
-        margin: 0;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        line-height: 1.2;
-        user-select: none;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        box-sizing: border-box;
+        font-size: 1.1rem;
+        padding: 0.5rem 0.75rem;
+        min-height: 54px; /* altura mínima para o texto em telas menores */
+        white-space: normal;
     }
+}
 
+/* Estilos adicionais para o restante do layout */
+.info-grid {
+    display: grid;
+    gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-top: 1rem;
+}
+
+.info-item {
+    background: #e8f0fe;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    color: #3366cc;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(51, 102, 204, 0.15);
+}
+
+.info-item p {
+    margin-top: 0.3rem;
+    font-weight: 400;
+    font-size: 1rem;
+    color: #2f3d4a;
+}
+
+#map {
+    margin-top: 1rem;
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.15);
+}
+
+footer {
+    text-align: center;
+    padding: 1.8rem 1rem;
+    color: #667581;
+    font-size: 0.9rem;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    border-radius: 12px;
+}
+
+.nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(13, 71, 161, 0.8);
+    border-radius: 50%;
+    color: white;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 10px rgba(13, 71, 161, 0.4);
+}
+.nav-arrow:hover {
+    background: #09327d;
+}
+.nav-arrow.left {
+    left: 8px;
+}
+.nav-arrow.right {
+    right: 8px;
+}
+
+.nav-arrow svg {
+    width: 22px;
+    height: 22px;
+    stroke: white;
+    stroke-width: 3;
+}
+
+@media (max-width: 600px) {
     .nav-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(13, 71, 161, 0.8);
-        border-radius: 50%;
-        color: white;
-        width: 46px;
-        height: 46px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        user-select: none;
-        transition: background-color 0.3s ease;
-        box-shadow: 0 2px 10px rgba(13, 71, 161, 0.4);
+        width: 38px;
+        height: 38px;
     }
-    .nav-arrow:hover {
-        background: #09327d;
-    }
-    .nav-arrow.left {
-        left: 8px;
-    }
-    .nav-arrow.right {
-        right: 8px;
-    }
-
     .nav-arrow svg {
-        width: 22px;
-        height: 22px;
-        stroke: white;
-        stroke-width: 3;
+        width: 16px;
+        height: 16px;
+        stroke-width: 2.5;
     }
-
-    @media (max-width: 600px) {
-        .gallery-image {
-            height: 280px;
-        }
-        .nav-arrow {
-            width: 38px;
-            height: 38px;
-        }
-        .nav-arrow svg {
-            width: 16px;
-            height: 16px;
-            stroke-width: 2.5;
-        }
-        .location-item {
-            height: 170px; /* redução proporcional em telas pequenas */
-        }
-        .location-item img {
-            height: 130px; /* ajuste proporcional em telas pequenas */
-        }
-        .location-name {
-            font-size: 1rem;
-            padding: 0.3rem 0.5rem;
-            white-space: normal;
-        }
-    }
-</style>  
+}
+</style>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
