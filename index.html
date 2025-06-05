@@ -29,27 +29,6 @@
             font-size: 2.8rem;
             margin: 0;
         }
-        header nav {
-            margin-top: 1rem;
-        }
-        header nav ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        header nav li {
-            margin: 0 1rem;
-        }
-        header nav a {
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        header nav a:hover {
-            color: #f4f6f8;
-        }
         main {
             max-width: 900px;
             margin: 2rem auto 4rem;
@@ -114,31 +93,7 @@
             box-shadow: 0 6px 25px rgba(74, 144, 226, 0.15);
         }
 
-        .btn-register {
-            margin-top: 3rem;
-            display: block;
-            max-width: 320px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-            font-weight: 700;
-            font-size: 1.3rem;
-            padding: 1.1rem 0;
-            background: #4a90e2;
-            color: white;
-            border-radius: 40px;
-            text-decoration: none;
-            box-shadow: 0 8px 20px rgba(74,144,226,0.5);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-            user-select: none;
-        }
-        .btn-register:hover,
-        .btn-register:focus {
-            background: #357ABD;
-            outline: none;
-            box-shadow: 0 12px 30px rgba(53, 122, 189, 0.7);
-        }
-
+    
         footer {
             text-align: center;
             padding: 1.8rem 1rem;
@@ -244,8 +199,7 @@
             max-height: 180px;
             }
         }
-            
-               
+                     
         .gallery-section {
             background: #ffffff;
             box-shadow: 0 6px 18px rgba(13, 71, 161, 0.15);
@@ -270,65 +224,37 @@
             box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
         }
 
-       /* .location-name {
-            position: absolute;
-            bottom: 18px;
-            left: 20px;
-            color: #fff;
-            font-weight: 700;
-            font-size: 1.3rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-            background: rgba(13, 71, 161, 0.6);
-            padding: 0.25rem 0.65rem 0.35rem 0.65rem;
+        .location-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.4rem;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            margin-top: 1rem;
+        }
+        
+        .location-item {
+            cursor: pointer;
             border-radius: 8px;
-        } */
-
-        ---------------------------------------------------------
-.location-list {
-    margin-top: 1rem;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.location-item {
-    cursor: pointer;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    width: calc(50% - 0.5rem); /* Ajuste para duas colunas */
-}
-
-.location-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.location-name {
-    background: rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
-    padding: 0.5rem;
-    font-weight: bold;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-        --------------------------------------------------------
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            width: calc(50% - 0.5rem); /* Ajuste para duas colunas */
+        }
+        
+        .location-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .location-name {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: bold;
+        }
 
         .nav-arrow {
             position: absolute;
@@ -357,7 +283,6 @@
             right: 8px;
         }
 
-        /* Arrow SVG styling */
         .nav-arrow svg {
             width: 22px;
             height: 22px;
@@ -432,67 +357,52 @@
                 <div class="info-item"><strong>Idade</strong><p>5 a 25 anos</p></div>
             </div>
         </section>
-       /* <section aria-labelledby123="galeria">
-            <h2 id="galeria">Locais a Visitar</h2>
-            <ul class="location-list">
-                <li class="location-item" onclick="showDescription(1)">1. Sociedade Recreativa 1º de Agosto</li>
-                <li class="location-item" onclick="showDescription(2)">2. Agita - Associação Cultural e Juvenil</li>
-                <li class="location-item" onclick="showDescription(3)">3. Castelo Pirescoxe</li>
-                <li class="location-item" onclick="showDescription(4)">4. Parque Urbano de Santa Iria da Azoia</li>
-                <li class="location-item" onclick="showDescription(5)">5. Trilho Junto ao Rio</li>
-                <li class="location-item" onclick="showDescription(6)">6. Associação Agregar</li>
-                <li class="location-item" onclick="showDescription(7)">7. Mercado de Vale de Figueira</li>
-                <li class="location-item" onclick="showDescription(8)">8. Ecoparque de São João da Talha</li>
-                <li class="location-item" onclick="showDescription(9)">9. Quinta dos Remédios</li>
-                <li class="location-item" onclick="showDescription(10)">10. Café Adro Bobadela</li>
-            </ul>
-        </section> */
 
-        <section aria-labelledby="galeria">
-    <h2 id="galeria">Locais a Visitar</h2>
-    <ul class="location-list">
-        <li class="location-item" onclick="showDescription(1)">
-            <img src="fotos/sociedade1agosto.jpg" alt="Sociedade Recreativa 1º de Agosto" />
-            <div class="location-name">Sociedade Recreativa 1º de Agosto</div>
-        </li>
-        <li class="location-item" onclick="showDescription(2)">
-            <img src="fotos/agita.png" alt="Agita - Associação Cultural e Juvenil" />
-            <div class="location-name">Agita - Associação Cultural e Juvenil</div>
-        </li>
-        <li class="location-item" onclick="showDescription(3)">
-            <img src="fotos/CastelodePirescoxe.jpg" alt="Castelo Pirescoxe" />
-            <div class="location-name">Castelo Pirescoxe</div>
-        </li>
-        <li class="location-item" onclick="showDescription(4)">
-            <img src="fotos/parqueurbano.png" alt="Parque Urbano de Santa Iria da Azoia" />
-            <div class="location-name">Parque Urbano de Santa Iria da Azoia</div>
-        </li>
-        <li class="location-item" onclick="showDescription(5)">
-            <img src="fotos/caminhofatima.png" alt="Trilho Junto ao Rio" />
-            <div class="location-name">Trilho Junto ao Rio</div>
-        </li>
-        <li class="location-item" onclick="showDescription(6)">
-            <img src="fotos/agregar.png" alt="Associação Agregar" />
-            <div class="location-name">Associação Agregar</div>
-        </li>
-        <li class="location-item" onclick="showDescription(7)">
-            <img src="fotos/mercado.png" alt="Mercado de Vale de Figueira" />
-            <div class="location-name">Mercado de Vale de Figueira</div>
-        </li>
-        <li class="location-item" onclick="showDescription(8)">
-            <img src="fotos/ecoparque.png" alt="Ecoparque de São João da Talha" />
-            <div class="location-name">Ecoparque de São João da Talha</div>
-        </li>
-        <li class="location-item" onclick="showDescription(9)">
-            <img src="fotos/quintadosremedios.png" alt="Quinta dos Remédios" />
-            <div class="location-name">Quinta dos Remédios</div>
-        </li>
-        <li class="location-item" onclick="showDescription(10)">
-            <img src="fotos/cafeoadro.jpg" alt="Café Adro Bobadela" />
-            <div class="location-name">Café Adro Bobadela</div>
-        </li>
-    </ul>
-</section>
+    <section aria-labelledby="galeria">
+        <h2 id="galeria">Locais a Visitar</h2>
+        <ul class="location-list">
+            <li class="location-item" onclick="showDescription(1)">
+                <img src="fotos/sociedade1agosto.jpg" alt="Sociedade Recreativa 1º de Agosto" />
+                <div class="location-name">Sociedade Recreativa 1º de Agosto</div>
+            </li>
+            <li class="location-item" onclick="showDescription(2)">
+                <img src="fotos/agita.png" alt="Agita - Associação Cultural e Juvenil" />
+                <div class="location-name">Agita - Associação Cultural e Juvenil</div>
+            </li>
+            <li class="location-item" onclick="showDescription(3)">
+                <img src="fotos/CastelodePirescoxe.jpg" alt="Castelo Pirescoxe" />
+                <div class="location-name">Castelo Pirescoxe</div>
+            </li>
+            <li class="location-item" onclick="showDescription(4)">
+                <img src="fotos/parqueurbano.png" alt="Parque Urbano de Santa Iria da Azoia" />
+                <div class="location-name">Parque Urbano de Santa Iria da Azoia</div>
+            </li>
+            <li class="location-item" onclick="showDescription(5)">
+                <img src="fotos/caminhofatima.png" alt="Trilho Junto ao Rio" />
+                <div class="location-name">Trilho Junto ao Rio</div>
+            </li>
+            <li class="location-item" onclick="showDescription(6)">
+                <img src="fotos/agregar.png" alt="Associação Agregar" />
+                <div class="location-name">Associação Agregar</div>
+            </li>
+            <li class="location-item" onclick="showDescription(7)">
+                <img src="fotos/mercado.png" alt="Mercado de Vale de Figueira" />
+                <div class="location-name">Mercado de Vale de Figueira</div>
+            </li>
+            <li class="location-item" onclick="showDescription(8)">
+                <img src="fotos/ecoparque.png" alt="Ecoparque de São João da Talha" />
+                <div class="location-name">Ecoparque de São João da Talha</div>
+            </li>
+            <li class="location-item" onclick="showDescription(9)">
+                <img src="fotos/quintadosremedios.png" alt="Quinta dos Remédios" />
+                <div class="location-name">Quinta dos Remédios</div>
+            </li>
+            <li class="location-item" onclick="showDescription(10)">
+                <img src="fotos/cafeoadro.jpg" alt="Café Adro Bobadela" />
+                <div class="location-name">Café Adro Bobadela</div>
+            </li>
+        </ul>
+    </section>
 
         
         <section aria-labelledby="mapa">
