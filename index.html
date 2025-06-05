@@ -1,346 +1,339 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Roteiro Jovem - 2025</title>
-<style>   
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roteiro Jovem - 2025</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
-*, *::before, *::after {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f4f6f8;
-    color: #333;
-    line-height: 1.6;
-}
-header {
-    background: linear-gradient(135deg, #4a90e2, #357ABD);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    color: white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-header h1 {
-    font-weight: 700;
-    font-size: 2.8rem;
-    margin: 0;
-}
-main {
-    max-width: 900px;
-    margin: 2rem auto 4rem;
-    padding: 0 1rem;
-}
-section {
-    background: white;
-    padding: 1.8rem 2rem 2rem;
-    box-shadow: 0 5px 20px rgba(74, 144, 226, 0.07);
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-h2 {
-    border-left: 5px solid #4a90e2;
-    padding-left: 0.75rem;
-    margin-top: 2rem;
-    font-weight: 700;
-    font-size: 1.9rem;
-}
-#map {
-    margin-top: 1rem;
-    width: 100%;
-    height: 400px;
-    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.15);
-}
-
-
-footer {
-    text-align: center;
-    padding: 1.8rem 1rem;
-    color: #667581;
-    font-size: 0.9rem;
-}
-
-.leaflet-popup-content-wrapper, .leaflet-popup-tip {
-    border-radius: 12px;
-}
-
-@media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.5rem; }
-    .info-grid { grid-template-columns: 1fr; }
-    .btn-register { font-size: 1.1rem; padding: 0.8rem 0; }
-    #map {
-        height: 300px; /* Ajuste a altura para telas menores */
+    *, *::before, *::after {
+        box-sizing: border-box;
     }
-}
-
-.custom-div-icon {
-    font-family: 'Poppins', sans-serif;
-}
-
-.modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    padding: 1rem;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 12px;
-    max-width: 500px;
-    width: 100%;
-    max-height: 85vh;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    position: relative;
-}
-
-.modal-close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: none;
-    border: none;
-    font-size: 1.6rem;
-    cursor: pointer;
-    color: red;
-    z-index: 10;
-}
-
-.modal-body {
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-    padding: 1.5rem 1rem 1rem;
-}
-
-.modal-body img {
-    width: auto;
-    max-width: 100%;
-    max-height: 250px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    align-self: center;
-    object-fit: contain;
-}
-
-.modal-body h3 {
-    margin: 0 0 0.8rem;
-    align-self: center; 
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: #0d47a1;
-}
-    
-.modal-body p {
-    font-size: 1rem;
-    line-height: 1.4;
-    color: #444;
-    text-align: justify; /* Justifica o texto */
-}
-    
-/* Ao reduzir a tela deixar o modal ocupar quase toda a largura e altura */
-@media (max-width: 480px) {
-    .modal-content {
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: #f4f6f8;
+        color: #333;
+        line-height: 1.6;
+        overflow-x: hidden;
+    }
+    header {
+        background: linear-gradient(135deg, #4a90e2, #357ABD);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        position: relative;
+        z-index: 1000;
+    }
+    header h1 {
+        font-weight: 700;
+        font-size: 2.8rem;
+        margin: 0;
+    }
+    /* Banner carousel container */
+    .gallery-banner {
+        position: relative;
+        width: 100vw;
+        height: 450px;
+        overflow: hidden;
+    }
+    .gallery-banner img {
+        width: 100%;
+        height: 450px;
+        object-fit: cover;
+        position: absolute;
+        top: 0; left: 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+    }
+    .gallery-banner img.active {
+        opacity: 1;
+        position: relative;
+        z-index: 1;
+    }
+    /* Location name text over image */
+    .gallery-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(232,240,254,0.75);
+        color: #1a3c7a;
+        padding: 0.5rem 1rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.5rem;
+        white-space: nowrap;
+        user-select: none;
+        z-index: 10;
         max-width: 90vw;
-        max-height: 90vh;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    .modal-body img {
-        max-height: 180px;
+    /* Dots container */
+    .gallery-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 20;
     }
-}
-             
-.gallery-section {
-    background: #ffffff;
-    box-shadow: 0 6px 18px rgba(13, 71, 161, 0.15);
-    border-radius: 12px;
-    padding: 1.5rem 1rem 2rem;
-    user-select: none;
-    margin-bottom: 2rem;
-}
+    .gallery-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #bbb;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: none;
+        padding: 0;
+    }
+    .gallery-dot.active {
+        background: #4a90e2;
+        box-shadow: 0 0 6px #357ABD;
+    }
 
-.gallery-container {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-}
+    @media (max-width: 600px) {
+        .gallery-banner {
+            height: 280px;
+        }
+        .gallery-banner img {
+            height: 280px;
+        }
+        .gallery-caption {
+            font-size: 1.1rem;
+            max-width: 80vw;
+            bottom: 12px;
+            padding: 0.3rem 0.8rem;
+        }
+        .gallery-dot {
+            width: 10px;
+            height: 10px;
+        }
+    }
 
-.gallery-image {
-    width: 100%;
-    display: block;
-    height: 450px;
-    object-fit: cover;
-    box-shadow: 0 5px 15px rgba(13, 71, 161, 0.2);
-}
+    main {
+        max-width: 900px;
+        margin: 2rem auto 4rem;
+        padding: 0 1rem;
+    }
 
-/* Location list styles improved */
-.location-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    gap: 1.4rem;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    margin-top: 1rem;
-}
-
-.location-item {
-    cursor: pointer;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    background: white;
-}
-
-.location-item img {
-    width: 100%;
-    height: 170px;
-    display: block;
-    object-fit: cover;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    flex-shrink: 0;
-}
-
-.location-name {
-    background: #e8f0fe;
-    color: #1a3c7a;
-    text-align: center;
-    padding: 0.6rem 0.75rem;
-    font-weight: 700;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    line-height: 1.3;
-    user-select: none;
-    white-space: normal;
-    overflow-wrap: break-word;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px; /* height min to avoid cut text */
-    box-sizing: border-box;
-}
-
-.nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(13, 71, 161, 0.8);
-    border-radius: 50%;
-    color: white;
-    width: 46px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 10px rgba(13, 71, 161, 0.4);
-}
-.nav-arrow:hover {
-    background: #09327d;
-}
-.nav-arrow.left {
-    left: 8px;
-}
-.nav-arrow.right {
-    right: 8px;
-}
-
-.nav-arrow svg {
-    width: 22px;
-    height: 22px;
-    stroke: white;
-    stroke-width: 3;
-}
-
-@media (max-width: 600px) {
-    h1 { font-size: 2.2rem; }
-    h2 { font-size: 1.5rem; }
-    .info-grid { grid-template-columns: 1fr; }
-    .btn-register { font-size: 1.1rem; padding: 0.8rem 0; }
+    section {
+        background: white;
+        padding: 1.8rem 2rem 2rem;
+        box-shadow: 0 5px 20px rgba(74, 144, 226, 0.07);
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+    h2 {
+        border-left: 5px solid #4a90e2;
+        padding-left: 0.75rem;
+        margin-top: 2rem;
+        font-weight: 700;
+        font-size: 1.9rem;
+    }
     #map {
-        height: 300px; /* Ajuste a altura para telas menores */
+        margin-top: 1rem;
+        width: 100%;
+        height: 400px;
+        box-shadow: 0 6px 25px rgba(74, 144, 226, 0.15);
+    }
+    footer {
+        text-align: center;
+        padding: 1.8rem 1rem;
+        color: #667581;
+        font-size: 0.9rem;
     }
 
     .location-list {
-        grid-template-columns: 1fr;
-    }
-    .location-item img {
-        height: 140px;
-    }
-    .location-name {
-        font-size: 1.1rem;
-        padding: 0.5rem 0.75rem;
-        min-height: 54px; /* height min for text on mobile */
-        white-space: normal;
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 1.4rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 1rem;
     }
 
-    .nav-arrow {
-        width: 38px;
-        height: 38px;
+    .location-item {
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2), 0 6px 20px rgba(0,0,0,0.19);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        background: white;
     }
-    .nav-arrow svg {
-        width: 16px;
-        height: 16px;
-        stroke-width: 2.5;
+
+    .location-item img {
+        width: 100%;
+        height: 170px;
+        display: block;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        flex-shrink: 0;
     }
-}
-    .objetivo{
-         text-align: justify;
+
+    .location-name {
+        background: #e8f0fe;
+        color: #1a3c7a;
+        text-align: center;
+        padding: 0.6rem 0.75rem;
+        font-weight: 700;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        line-height: 1.3;
+        user-select: none;
+        white-space: normal;
+        overflow-wrap: break-word;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        box-sizing: border-box;
     }
-    
+
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+        border-radius: 12px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        padding: 1rem;
+        display: none;
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 12px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 85vh;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: none;
+        border: none;
+        font-size: 1.6rem;
+        cursor: pointer;
+        color: red;
+        z-index: 10;
+    }
+
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .modal-body img {
+        width: auto;
+        max-width: 100%;
+        max-height: 250px;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        align-self: center;
+        object-fit: contain;
+    }
+
+    .modal-body h3 {
+        margin: 0 0 0.8rem;
+        align-self: center; 
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: #0d47a1;
+    }
+        
+    .modal-body p {
+        font-size: 1rem;
+        line-height: 1.4;
+        color: #444;
+        text-align: justify;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 2.2rem;
+        }
+        h2 {
+            font-size: 1.5rem;
+        }
+        main {
+            margin: 1rem 1rem 3rem;
+            padding: 0 0.5rem;
+        }
+        #map {
+            height: 300px;
+        }
+        .location-list {
+            grid-template-columns: 1fr;
+        }
+        .location-item img {
+            height: 140px;
+        }
+        .location-name {
+            font-size: 1.1rem;
+            padding: 0.5rem 0.75rem;
+            min-height: 54px;
+            white-space: normal;
+        }
+    }
 </style>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
 </head>
 <body>
-    <header>
-        <h1>Roteiro Jovem</h1>
-    </header>
-    <main>
-        <section class = "objetivo">
-            <h2>Objetivo</h2>
-            <p>Com o intuito de fazer face à falta de pontos de encontro para jovens e à pouca divulgação dos locais já existentes na nossa Freguesia,criamos este Roteiro Jovem, que reune espaços
-            que já existem e que podem ter uma melhor divulgação, outros que podem ser reabilitados e transformados de forma a que possamos dar aos nossos jovens um vida social digna dentro da nossa Freguesia</p>
-         </section>    
+<header>
+    <h1>Roteiro Jovem</h1>
+</header>
 
-     <!-- New Photo Gallery Section -->
-        <section class="gallery-section" aria-labelledby="galeria-fotos">
-            <h2 id="galeria-fotos">Locais a visitar</h2>
-            <div class="gallery-container">
-                <img id="galleryImage" class="gallery-image" src="" alt="Imagem do local" />
-                <div id="locationName" class="location-name"></div>
-                <button class="nav-arrow left" id="leftArrow" aria-label="Foto anterior" title="Foto anterior">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18L9 12L15 6" />
-                    </svg>
-                </button>
-                <button class="nav-arrow right" id="rightArrow" aria-label="Próxima foto" title="Próxima foto">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" />
-                    </svg>
-                </button>
-            </div>
-        </section>
-        
+<div class="gallery-banner" aria-label="Galeria de fotos, banner rotativo com locais para visitar" style="width:100vw; max-width:none; margin-bottom: 2rem;">
+    <img src="fotos/sociedade1agosto.jpg" alt="Sociedade Recreativa 1º de Agosto" class="active" />
+    <img src="fotos/agita.png" alt="Agita - Associação Cultural e Juvenil" />
+    <img src="fotos/CastelodePirescoxe.jpg" alt="Castelo Pirescoxe" />
+    <img src="fotos/parqueurbano.png" alt="Parque Urbano de Santa Iria da Azoia" />
+    <img src="fotos/caminhofatima.png" alt="Trilho Junto ao Rio" />
+    <img src="fotos/agregar.png" alt="Associação Agregar" />
+    <img src="fotos/mercado.png" alt="Mercado de Vale de Figueira" />
+    <img src="fotos/ecoparque.png" alt="Ecoparque de São João da Talha" />
+    <img src="fotos/quintadosremedios.png" alt="Quinta dos Remédios" />
+    <img src="fotos/cafeoadro.jpg" alt="Café Adro Bobadela" />
+    <div class="gallery-caption" aria-live="polite"></div>
+    <div class="gallery-dots" role="tablist" aria-label="Seleção das imagens"></div>
+</div>
+
+<main>
+    <section class="objetivo">
+        <h2>Objetivo</h2>
+        <p>Com o intuito de fazer face à falta de pontos de encontro para jovens e à pouca divulgação dos locais já existentes na nossa Freguesia, criamos este Roteiro Jovem, que reúne espaços que já existem e que podem ter uma melhor divulgação, outros que podem ser reabilitados e transformados de forma a que possamos dar aos nossos jovens uma vida social digna dentro da nossa Freguesia.</p>
+    </section>
+
     <section aria-labelledby="galeria">
         <h2 id="galeria">Sugestões</h2>
         <ul class="location-list">
@@ -387,187 +380,224 @@ footer {
         </ul>
     </section>
 
-        
-        <section aria-labelledby="mapa">
-            <h2 id="mapa">Localização no Mapa</h2>
-            <div id="map"></div>
-        </section>
+    <section aria-labelledby="mapa">
+        <h2 id="mapa">Localização no Mapa</h2>
+        <div id="map"></div>
+    </section>
 
-        <div id="modal" style="display:none;" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-              <div class="modal-content">
-                <button class="modal-close" onclick="closeModal()" aria-label="Fechar pop-up">×</button>
-                    <div class="modal-body">
-                      <h3 id="modal-title"></h3>
-                      <img id="modal-image" src="" alt="Imagem do local">
-                      <p id="modal-description"></p>
-                    </div>
-              </div>
+    <div id="modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()" aria-label="Fechar pop-up">×</button>
+            <div class="modal-body">
+                <h3 id="modal-title"></h3>
+                <img id="modal-image" src="" alt="Imagem do local">
+                <p id="modal-description"></p>
+            </div>
         </div>
+    </div>
+</main>
 
-        
-    </main>
-    <footer>
-        &copy;Roteiro Jovem
-    </footer>
+<footer>
+    &copy; Roteiro Jovem
+</footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-    <script>
-        var map = L.map('map').setView([38.83771708425723, -9.087882453647572], 13); // Coordenadas de exemplo
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+<script>
+    var map = L.map('map').setView([38.83771708425723, -9.087882453647572], 13);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
 
-        // Adicionando marcadores
-        var locations = [
-            { coords: [38.84690843683296, -9.086520418083422], title: "1. Sociedade Recreativa Musical 1 de Agosto Santa Iriense" },
-            { coords: [38.8436989096854, -9.090579335282522], title: "2. Agita - Associação Cultural e Social" },
-            { coords: [38.837123369622795, -9.091529160411499], title: "3. Castelo de Pirescoxe" },
-            { coords: [38.84917377299396, -9.099818877609708], title: "4. Parque Urbano de Santa Iria de Azóia" },
-            { coords: [38.834060, -9.114564], title: "5. Trilho junto ao rio" },
-            { coords: [38.8254838921904, -9.10243816524196], title: "6. Associação Agregar" },
-            { coords: [38.82466572536972, -9.102132857328312], title: "7. Mercado de Vale Figueira" },
-            { coords: [38.823030739207674, -9.100429573903483], title: "8. Ecoparque de São João da Talha" },
-            { coords: [38.813243048938865, -9.099374077611841], title: "9. Parque da Quinta dos Remédios" },
-            { coords: [38.80327090388599, -9.099232804594806], title: "10. Café O Adro" }
+    var locations = [
+        { coords: [38.84690843683296, -9.086520418083422], title: "1. Sociedade Recreativa Musical 1 de Agosto Santa Iriense" },
+        { coords: [38.8436989096854, -9.090579335282522], title: "2. Agita - Associação Cultural e Social" },
+        { coords: [38.837123369622795, -9.091529160411499], title: "3. Castelo de Pirescoxe" },
+        { coords: [38.84917377299396, -9.099818877609708], title: "4. Parque Urbano de Santa Iria de Azóia" },
+        { coords: [38.834060, -9.114564], title: "5. Trilho junto ao rio" },
+        { coords: [38.8254838921904, -9.10243816524196], title: "6. Associação Agregar" },
+        { coords: [38.82466572536972, -9.102132857328312], title: "7. Mercado de Vale Figueira" },
+        { coords: [38.823030739207674, -9.100429573903483], title: "8. Ecoparque de São João da Talha" },
+        { coords: [38.813243048938865, -9.099374077611841], title: "9. Parque da Quinta dos Remédios" },
+        { coords: [38.80327090388599, -9.099232804594806], title: "10. Café O Adro" }
+    ];
+
+    var markers = L.markerClusterGroup();
+
+    locations.forEach(function(location, index) {
+        var marker = L.marker(location.coords, {
+            icon: L.divIcon({
+                className: 'custom-div-icon',
+                html: `<div style="background-color:#4a90e2;color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:bold;">${index + 1}</div>`,
+                iconSize: [30, 30],
+                iconAnchor: [15, 30]
+            })
+        }).addTo(markers);
+        marker.bindPopup(location.title);
+    });
+
+    map.addLayer(markers);
+
+    for (let i = 0; i < locations.length - 1; i++) {
+        var latlngs = [locations[i].coords, locations[i + 1].coords];
+        L.polyline(latlngs, { color: 'blue' }).addTo(map);
+    }
+
+    function showDescription(locationId) {
+        const data = {
+            1: {
+                title: "Sociedade Recreativa 1º de Agosto",
+                image: "fotos/sociedade1agosto.jpg",
+                description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades. Oferece uma vasta gama de espetáculos, incluindo concertos e teatros. É um espaço com bastante potencial, com diversas actividades para os jovens enriquecerem-se a nível cultural e que deve ser mais promovido de forma a chegar a todos os jovens para que estes conheçam e possam usufruir dos serviços que este espaço tem para oferecer. Se quiseres saber mais sobre as atividades que este espaço tem para te oferecer podes seguir no instagram @soc.1.agosto ou no facebook @Sociedade 1º de Agosto Santa Iriense."
+            },
+            2: {
+                title: "Agita - Associação Cultural e Juvenil",
+                image: "fotos/agita.png",
+                description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar. Neste momento possui duas valências que são a Companhia de Teatro e o Centro de Artes e Gabinete Psicossocial. A Companhia de Teatro é a principal especialização da Agita e tem estado presente em vários pontos do país, bem como na nossa freguesia. O Centro de Artes tem disponíveis aulas de Guitarra Clássica, Piano e Canto/Técnica Vocal. E o Gabinete Psicossocial possui Avaliação Psicológica e Acompanhamento Psicológico para Crianças, Jovens e Adultos. Se quiseres usufruir das vantagens que esta associação tem para oferecer podes tornar-te Sócio da Agita. Para saberes mais sobre esta associação podes ver o site deles https://www.agitaculturalesocial.com/associacao, ou segui-los no instagram @agitaculturalesocial e no facebook @Agita, Associação cultural e social."
+            },
+            3: {
+                title: "Castelo de Pirescoxe",
+                image: "fotos/CastelodePirescoxe.jpg",
+                description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
+            },
+            4: {
+                title: "Parque Urbano de Santa Iria da Azoia",
+                image: "fotos/parqueurbano.png",
+                description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada, 2 parques infantis, uma pista de skate, várias mesas para piqueniques, um espaço com insufláveis onde podem também ser feitas festas de aniversário infantis, possui também ginásio ao ar livre, além de ter casas de banho. É um espaço bastante agradável para todas as idades usufruírem. Para se tornar ainda melhor podiam ser feitas algumas melhorias como, abrir mais cedo e fechar mais tarde, as mesas de piquenique podiam ter manutenção, uma vez que algumas já estão a ficar danificadas, e podiam ser construídas mais mesas. Podia ser feita uma cafetaria com esplanada onde os jovens pudessem estar e ou estudar. E as casas de banho deviam de ter mais limpeza e manutenção."
+            },
+            5: {
+                title: "Trilho Junto ao Rio",
+                image: "fotos/caminhofatima.png",
+                description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza. Possui pelo menos três acessos, um junto ao Parque Urbano de Santa Iria do lado da Rulote da Portela, outro na Rua do Poço em São João da Talha e outro no Bairro da Fraternidade. Os acessos podem ser reabilitados e promovidos de forma a serem mais conhecidos pela nossa população para que todos possamos usufruir deste passeio."
+            },
+            6: {
+                title: "Associação Agregar",
+                image: "fotos/agregar.png",
+                description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto sem ter de gastar dinheiro. Disponibiliza treinos de rugby. Neste momento possui também um centro de apoio ao estudo para as crianças da escolinha que é feito na sede da associação Agregar. O trabalho desta associação podia ser mais divulgado de forma que os possamos ajudar a crescer e ajudar mais crianças. Podíamos ajudar a reabilitar a Sede da Associação Agregar que tem potencial para ser um espaço de convívio para os jovens. Se quiseres saber mais sobre esta associação podes segui-los no instagram @esc.rugby_sao_joao_talha ou no facebook @Agregar Associação."
+            },
+            7: {
+                title: "Mercado de Vale de Figueira",
+                image: "fotos/mercado.png",
+                description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia. No entanto, encontra-se bastante degradado e não possui uma boa acústica para fazer por exemplo concertos e apresentações. Podia ser reabilitado de forma a transformar-se num espaço multiusos, com um bar, casas de banho, espaço para fazer festas com um palco, ou para servir de auditório para dar lugar a palestras."
+            },
+            8: {
+                title: "Ecoparque de São João da Talha",
+                image: "fotos/ecoparque.png",
+                description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
+            },
+            9: {
+                title: "Quinta dos Remédios",
+                image: "fotos/quintadosremedios.png",
+                description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
+            },
+            10: {
+                title: "Café Adro Bobadela",
+                image: "fotos/cafeoadro.jpg",
+                description: "É um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal. Possui mesas de piqueniques e é um espaço bastante agradável para os jovens se encontrarem."
+            }
+        };
+
+        const item = data[locationId];
+        if (item) {
+            document.getElementById("modal-title").textContent = item.title;
+            document.getElementById("modal-image").src = item.image;
+            document.getElementById("modal-description").textContent = item.description;
+            const modal = document.getElementById("modal");
+            modal.style.display = "flex";
+            modal.setAttribute("aria-hidden", "false");
+        }
+    }
+
+    function closeModal() {
+        const modal = document.getElementById("modal");
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+    }
+
+    // Gallery Banner
+    (function(){
+        const images = document.querySelectorAll('.gallery-banner img');
+        const caption = document.querySelector('.gallery-caption');
+        const dotsContainer = document.querySelector('.gallery-dots');
+        const locations = [
+            "Sociedade Recreativa 1º de Agosto",
+            "Agita - Associação Cultural e Juvenil",
+            "Castelo Pirescoxe",
+            "Parque Urbano de Santa Iria da Azoia",
+            "Trilho Junto ao Rio",
+            "Associação Agregar",
+            "Mercado de Vale de Figueira",
+            "Ecoparque de São João da Talha",
+            "Quinta dos Remédios",
+            "Café Adro Bobadela"
         ];
 
-        var markers = L.markerClusterGroup();
+        let currentIndex = 0;
+        const total = images.length;
+        let timer;
 
-        locations.forEach(function(location, index) {
-            var marker = L.marker(location.coords, {
-                icon: L.divIcon({
-                    className: 'custom-div-icon',
-                    html: `<div style="background-color:#4a90e2;color:white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-weight:bold;">${index + 1}</div>`,
-                    iconSize: [30, 30],
-                    iconAnchor: [15, 30]
-                })
-            }).addTo(markers);
-            marker.bindPopup(location.title);
-        });
-
-        map.addLayer(markers);
-
-        // Desenhar linhas entre os marcadores
-        for (let i = 0; i < locations.length - 1; i++) {
-            var latlngs = [locations[i].coords, locations[i + 1].coords];
-            L.polyline(latlngs, { color: 'blue' }).addTo(map);
+        function createDots(){
+            for(let i=0; i<total; i++){
+                const dot = document.createElement('button');
+                dot.classList.add('gallery-dot');
+                dot.setAttribute('role', 'tab');
+                dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+                dot.setAttribute('aria-label', `Imagem ${i+1} - ${locations[i]}`);
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetTimer();
+                });
+                dotsContainer.appendChild(dot);
+            }
         }
 
-        function showDescription(locationId) {
-    const data = {
-        1: {
-            title: "Sociedade Recreativa 1º de Agosto",
-            image: "fotos/sociedade1agosto.jpg",
-            description: "A Sociedade Recreativa Musical 1º de Agosto é um espaço para todos, onde têm lugar diversos tipos de aulas de música, dança e ginástica para todas as idades. Oferece uma vasta gama de espetáculos, incluindo concertos e teatros. É um espaço com bastante potencial, com diversas actividades para os jovens enriquecerem-se a nível cultural e que deve ser mais promovido de forma a chegar a todos os jovens para que estes conheçam e possam usufruir dos serviços que este espaço tem para oferecer. Se quiseres saber mais sobre as atividades que este espaço tem para te oferecer podes seguir no instagram @soc.1.agosto ou no facebook @Sociedade 1º de Agosto Santa Iriense."
-        },
-        2: {
-            title: "Agita - Associação Cultural e Juvenil",
-            image: "fotos/agita.png",
-            description: "A Agita é uma associação que se dedica ao apoio psicossocial e à promoção do bem estar. Neste momento possui duas valências que são a Companhia de Teatro e o Centro de Artes e Gabinete Psicossocial. A Companhia de Teatro é a principal especialização da Agita e tem estado presente em vários pontos do país, bem como na nossa freguesia. O Centro de Artes tem disponíveis aulas de Guitarra Clássica, Piano e Canto/Técnica Vocal. E o Gabinete Psicossocial possui Avaliação Psicológica e Acompanhamento Psicológico para Crianças, Jovens e Adultos. Se quiseres usufruir das vantagens que esta associação tem para oferecer podes tornar-te Sócio da Agita. Para saberes mais sobre esta associação podes ver o site deles https://www.agitaculturalesocial.com/associacao, ou segui-los no instagram @agitaculturalesocial e no facebook @Agita, Associação cultural e social."
-        },
-        3: {
-            title: "Castelo de Pirescoxe",
-            image: "fotos/CastelodePirescoxe.jpg",
-            description: "O Castelo de Pirescoxe possui duas salas de exposição e um bar com esplanada onde os jovens podem encontrar-se."
-        },
-        4: {
-            title: "Parque Urbano de Santa Iria da Azoia",
-            image: "fotos/parqueurbano.png",
-            description: "O Parque Urbano de Santa Iria da Azoia possui uma vasta zona verde, várias pistas para corrida ou caminhada, 2 parques infantis, uma pista de skate, várias mesas para piqueniques, um espaço com insufláveis onde podem também ser feitas festas de aniversário infantis, possui também ginásio ao ar livre, além de ter casas de banho. É um espaço bastante agradável para todas as idades usufruírem. Para se tornar ainda melhor podiam ser feitas algumas melhorias como, abrir mais cedo e fechar mais tarde, as mesas de piquenique podiam ter manutenção, uma vez que algumas já estão a ficar danificadas, e podiam ser construídas mais mesas. Podia ser feita uma cafetaria com esplanada onde os jovens pudessem estar e ou estudar. E as casas de banho deviam de ter mais limpeza e manutenção."
-        },
-        5: {
-            title: "Trilho Junto ao Rio",
-            image: "fotos/caminhofatima.png",
-            description: "Este trilho junto ao rio que passa pelas três freguesias oferece uma caminhada agradável pela natureza. Possui pelo menos três acessos, um junto ao Parque Urbano de Santa Iria do lado da Rulote da Portela, outro na Rua do Poço em São João da Talha e outro no Bairro da Fraternidade. Os acessos podem ser reabilitados e promovidos de forma a serem mais conhecidos pela nossa população para que todos possamos usufruir deste passeio."
-        },
-        6: {
-            title: "Associação Agregar",
-            image: "fotos/agregar.png",
-            description: "A Associação Agregar é uma escolinha de Rugby criada com o objetivo de que todas as crianças e jovens pudessem fazer desporto sem ter de gastar dinheiro. Disponibiliza treinos de rugby. Neste momento possui também um centro de apoio ao estudo para as crianças da escolinha que é feito na sede da associação Agregar. O trabalho desta associação podia ser mais divulgado de forma que os possamos ajudar a crescer e ajudar mais crianças. Podíamos ajudar a reabilitar a Sede da Associação Agregar que tem potencial para ser um espaço de convívio para os jovens. Se quiseres saber mais sobre esta associação podes segui-los no instagram @esc.rugby_sao_joao_talha ou no facebook @Agregar Associação."
-        },
-        7: {
-            title: "Mercado de Vale de Figueira",
-            image: "fotos/mercado.png",
-            description: "O Mercado de Vale de Figueira é um espaço onde se têm vindo a realizar vários eventos e festas da nossa freguesia. No entanto, encontra-se bastante degradado e não possui uma boa acústica para fazer por exemplo concertos e apresentações. Podia ser reabilitado de forma a transformar-se num espaço multiusos, com um bar, casas de banho, espaço para fazer festas com um palco, ou para servir de auditório para dar lugar a palestras."
-        },
-        8: {
-            title: "Ecoparque de São João da Talha",
-            image: "fotos/ecoparque.png",
-            description: "O Ecoparque de São João da Talha é um espaço dedicado à preservação ambiental e atividades recreativas."
-        },
-        9: {
-            title: "Quinta dos Remédios",
-            image: "fotos/quintadosremedios.png",
-            description: "Quinta dos Remédios é um espaço que oferece diversas atividades ao ar livre e é ideal para lazer."
-        },
-        10: {
-            title: "Café Adro Bobadela",
-            image: "fotos/cafeoadro.jpg",
-            description: "É um espaço bastante agradável, com um bom espaço de esplanada e com vista para a zona florestal. Possui mesas de piqueniques e é um espaço bastante agradável para os jovens se encontrarem."
-        }
-    };
-
-    const item = data[locationId];
-    if (item) {
-        document.getElementById("modal-title").textContent = item.title;
-        document.getElementById("modal-image").src = item.image;
-        document.getElementById("modal-description").textContent = item.description;
-        document.getElementById("modal").style.display = "flex";
-    }
-}
-
-        function closeModal() {
-            document.getElementById("modal").style.display = "none";
+        function updateCaption(index){
+            caption.textContent = locations[index];
         }
 
-    // Photo Gallery Script
-        (function(){
-            const photos = [
-                { src: "fotos/sociedade1agosto.jpg", location: "Sociedade Recreativa 1º de Agosto" },
-                { src: "fotos/agita.png", location: "Agita - Associação Cultural e Juvenil" },
-                { src: "fotos/CastelodePirescoxe.jpg", location: "Castelo de Pirescoxe" },
-                { src: "fotos/parqueurbano.png", location: "Parque Urbano de Santa Iria da Azóia" },
-                { src: "fotos/caminhofatima.png", location: "Trilho Junto ao Rio" },
-                { src: "fotos/agregar.png", location: "Associação Agregar" },
-                { src: "fotos/mercado.png", location: "Mercado de Vale de Figueira" },
-                { src: "fotos/ecoparque.png", location: "Ecoparque de São João da Talha" },
-                { src: "fotos/quintadosremedios.png", location: "Quinta dos Remédios" },
-                { src: "fotos/cafeoadro.jpg", location: "Café Adro Bobadela" },
-            ];
+        function setActiveDot(index){
+            const dots = dotsContainer.querySelectorAll('.gallery-dot');
+            dots.forEach((dot,i) => {
+                if(i === index){
+                    dot.classList.add('active');
+                    dot.setAttribute('aria-selected', 'true');
+                    dot.tabIndex = 0;
+                } else {
+                    dot.classList.remove('active');
+                    dot.setAttribute('aria-selected', 'false');
+                    dot.tabIndex = -1;
+                }
+            });
+        }
 
-            let currentIndex = 0;
-            const galleryImage = document.getElementById('galleryImage');
-            const locationName = document.getElementById('locationName');
-            const leftArrow = document.getElementById('leftArrow');
-            const rightArrow = document.getElementById('rightArrow');
+        function goToSlide(index){
+            images.forEach((img,i) => {
+                img.classList.toggle('active', i === index);
+            });
+            currentIndex = index;
+            updateCaption(currentIndex);
+            setActiveDot(currentIndex);
+        }
 
-            function updateGallery() {
-                const photo = photos[currentIndex];
-                galleryImage.src = photo.src;
-                galleryImage.alt = `Imagem do local: ${photo.location}`;
-                locationName.textContent = photo.location;
-            }
+        function nextSlide(){
+            let nextIndex = (currentIndex + 1) % total;
+            goToSlide(nextIndex);
+        }
 
-            function showPrevious() {
-                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
-                updateGallery();
-            }
+        function resetTimer(){
+            clearInterval(timer);
+            timer = setInterval(nextSlide, 5000);
+        }
 
-            function showNext() {
-                currentIndex = (currentIndex + 1) % photos.length;
-                updateGallery();
-            }
+        createDots();
+        updateCaption(0);
+        setActiveDot(0);
+        timer = setInterval(nextSlide, 5000);
+    })();
+</script>
 
-            leftArrow.addEventListener('click', showPrevious);
-            rightArrow.addEventListener('click', showNext);
-
-            updateGallery();
-        })();
-    </script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.css" />
-    <script src="https://unpkg.com/leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
 </body>
 </html>
+
